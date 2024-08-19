@@ -3,12 +3,23 @@ import globals from 'globals';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
 import tseslint from 'typescript-eslint';
-import configPrettier from 'eslint-config-prettier';
 
 export default tseslint.config(
   { ignores: ['dist'] },
   {
-    extends: [js.configs.recommended, ...tseslint.configs.recommended],
+    extends: [
+      js.configs.recommended,
+      ...tseslint.configs.recommended,
+      // ...tseslint.configs.recommendedTypeChecked,
+      // {
+      //   languageOptions: {
+      //     parserOptions: {
+      //       projectService: true,
+      //       tsconfigRootDir: import.meta.dirname,
+      //     },
+      //   },
+      // },
+    ],
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
       ecmaVersion: 2020,
@@ -17,7 +28,6 @@ export default tseslint.config(
     plugins: {
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
-      'eslint-config-prettier': configPrettier,
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
