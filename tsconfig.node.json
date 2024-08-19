@@ -11,6 +11,12 @@
     "isolatedModules": true,
     "moduleDetection": "force",
     "noEmit": true,
+    "paths": {
+      "@/*": ["./src/*"],
+      "@renderer/*": ["./src/renderer/*"],
+      "@main/*": ["./src/main/*"]
+    },
+    "baseUrl": ".",
 
     /* Linting */
     "strict": true,

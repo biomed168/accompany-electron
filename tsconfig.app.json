@@ -13,7 +13,12 @@
     "moduleDetection": "force",
     "noEmit": true,
     "jsx": "react-jsx",
-
+    "paths": {
+      "@/*": ["./src/*"],
+      "@renderer/*": ["./src/renderer/*"],
+      "@main/*": ["./src/main/*"]
+    },
+    "baseUrl": ".",
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
