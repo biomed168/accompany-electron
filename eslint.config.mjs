@@ -11,14 +11,9 @@ export default [
   {
     files: ['**/*.tsx', '**/*.ts'],
     languageOptions: { parserOptions: { parser: tsEslint.parser } },
-  },
-  {
-    files: ['**/*.tsx', '**/*.ts'],
     rules: {
       "@typescript-eslint/no-explicit-any": "off"
     },
-  },
-  {
     ignores: ['node_modules'],
   },
   eslintConfigPrettier,

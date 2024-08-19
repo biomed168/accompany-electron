@@ -2,7 +2,6 @@ import path from 'path'
 import react from '@vitejs/plugin-react'
 import type { UserConfig } from 'vite'
 import { defineConfig } from 'vite'
-import Checker from 'vite-plugin-checker'
 
 // https://vitejs.dev/config
 export default defineConfig((env) => {
@@ -14,12 +13,7 @@ export default defineConfig((env) => {
     build: {
       outDir: `.vite/dist`,
     },
-    plugins: [
-      Checker({
-        typescript: true,
-      }),
-      react(),
-    ],
+    plugins: [react()],
     resolve: {
       preserveSymlinks: true,
       alias: {
