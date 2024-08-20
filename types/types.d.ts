@@ -16,6 +16,32 @@ interface ElectronWindow {
   minimize: () => Promise<void>;
   maximize: () => Promise<void>;
   close: () => Promise<void>;
+  openDevTools: () => Promise<void>;
+  openExternal: (url: string) => Promise<void>;
+  openPath: (path: string) => Promise<void>;
+  showOpenDialog: () => Promise<Electron.OpenDialogReturnValue>;
+  showSaveDialog: () => Promise<Electron.SaveDialogReturnValue>;
+  showMessageBox: (
+    options: Electron.MessageBoxOptions,
+  ) => Promise<Electron.MessageBoxReturnValue>;
+  showErrorBox: (title: string, content: string) => Promise<void>;
+  loadView: (
+    url: string,
+    bounds: { x: number; y: number; width: number; height: number },
+    options?: { navigatable?: boolean },
+  ) => Promise<void>;
+  removeView: () => Promise<void>;
+  hideView: () => Promise<void>;
+  showView: () => Promise<void>;
+  scrapeView: () => Promise<string>; // Assuming this method returns HTML content
+  getPlatformInfo: () => Promise<Electron.PlatformInformation>; // Replace with actual return type
+  resetApp: () => Promise<void>;
+  resetSettings: () => Promise<void>;
+  relaunchApp: () => Promise<void>;
+  reloadApp: () => Promise<void>;
+  isPackaged: () => Promise<boolean>;
+  quitApp: () => Promise<void>;
+  getSystemPreferencesMediaAccess: () => Promise<Electron.SystemPreferencesMediaAccess>; // Replace with actual return type
 }
 
 interface SettingsModeContext {
