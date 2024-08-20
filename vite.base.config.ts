@@ -2,7 +2,6 @@ import { builtinModules } from 'node:module';
 import type { AddressInfo } from 'node:net';
 import type { ConfigEnv, Plugin, UserConfig } from 'vite';
 import pkg from './package.json';
-import forgeConfig from './forge.config';
 
 export const builtins = [
   'electron',
@@ -16,13 +15,13 @@ export const external = [
   ),
 ];
 
-export function getBuildConfig(env: ConfigEnv): UserConfig {
-  const { mode, command } = env;
+export function getBuildConfig(env: ConfigEnv<'build'>): UserConfig {
+  const { root, mode, command } = env;
 
   return {
+    root,
     mode,
     build: {
-      target: 'esnext',
       // Prevent multiple builds from interfering with each other.
       emptyOutDir: false,
       // 🚧 Multiple builds may conflict.
@@ -46,6 +45,30 @@ export function getDefineKeys(names: string[]) {
 
     return { ...acc, [name]: keys };
   }, define);
+}
+
+export function getBuildDefine(env: ConfigEnv<'build'>) {
+  const { command, forgeConfig } = env;
+  const names = forgeConfig.renderer
+    .filter(({ name }) => name != null)
+    .map(({ name }) => name!);
+  const defineKeys = getDefineKeys(names);
+  const define = Object.entries(defineKeys).reduce(
+    (acc, [name, keys]) => {
+      const { VITE_DEV_SERVER_URL, VITE_NAME } = keys;
+      const def = {
+        [VITE_DEV_SERVER_URL]:
+          command === 'serve'
+            ? JSON.stringify(process.env[VITE_DEV_SERVER_URL])
+            : undefined,
+        [VITE_NAME]: JSON.stringify(name),
+      };
+      return { ...acc, ...def };
+    },
+    {} as Record<string, any>,
+  );
+
+  return define;
 }
 
 export function pluginExposeRenderer(name: string): Plugin {
@@ -84,29 +107,4 @@ export function pluginHotRestart(command: 'reload' | 'restart'): Plugin {
       }
     },
   };
-}
-
-export function getBuildDefine(env: ConfigEnv) {
-  const { command } = env;
-  const names = forgeConfig.renderer
-    .filter(({ name }) => name != null)
-    .map(({ name }) => name!);
-  const defineKeys = getDefineKeys(names);
-  const define = Object.entries(defineKeys).reduce(
-    (acc, [name, keys]) => {
-      const { VITE_DEV_SERVER_URL, VITE_NAME } = keys;
-      const def = {
-        [VITE_DEV_SERVER_URL]:
-          command === 'serve'
-            ? JSON.stringify(process.env[VITE_DEV_SERVER_URL])
-            : undefined,
-        [VITE_NAME]: JSON.stringify(name),
-      };
-      return { ...acc, ...def };
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    },
-    {} as Record<string, any>,
-  );
-
-  return define;
 }

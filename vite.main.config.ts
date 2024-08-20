@@ -1,53 +1,33 @@
-import { viteStaticCopy } from 'vite-plugin-static-copy';
-import path from 'path';
 import type { ConfigEnv, UserConfig } from 'vite';
 import { defineConfig, mergeConfig } from 'vite';
 import {
   getBuildConfig,
   getBuildDefine,
-  pluginHotRestart,
   external,
+  pluginHotRestart,
 } from './vite.base.config';
 
 // https://vitejs.dev/config
 export default defineConfig((env) => {
-  const forgeEnv = env as ConfigEnv;
+  const forgeEnv = env as ConfigEnv<'build'>;
+  const { forgeConfigSelf } = forgeEnv;
   const define = getBuildDefine(forgeEnv);
   const config: UserConfig = {
     build: {
       lib: {
-        entry: './main/index.ts',
+        entry: forgeConfigSelf.entry!,
         fileName: () => '[name].js',
-        formats: ['es'],
+        formats: ['cjs'],
       },
       rollupOptions: {
-        external: [...external],
-        output: {
-          strict: false,
-        },
-        plugins: [],
-      },
-      commonjsOptions: {
-        transformMixedEsModules: true,
-        defaultIsModuleExports: true,
-        esmExternals: true,
+        external,
       },
     },
-    plugins: [
-      pluginHotRestart('restart'),
-      viteStaticCopy({
-        targets: [],
-      }),
-    ],
+    plugins: [pluginHotRestart('restart')],
     define,
     resolve: {
       // Load the Node.js entry.
       mainFields: ['module', 'jsnext:main', 'jsnext'],
-      alias: {
-        '@': path.resolve(__dirname, './src'),
-        '@main': path.resolve(__dirname, './src/main'),
-        // '@commands': path.resolve(__dirname, './src/commands'),
-      },
     },
   };
 
