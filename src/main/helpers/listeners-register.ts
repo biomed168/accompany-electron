@@ -9,8 +9,10 @@ import {
   systemPreferencesListener,
   originalStdListeners,
 } from '@/main/helpers/ipc/window/window-listeners';
+import { addSettingsEventListeners } from '@/main/helpers/ipc/settings/settings-listeners';
 
 export default function registerListeners(mainWindow: BrowserWindow) {
+  addSettingsEventListeners();
   addWindowEventListeners(mainWindow);
   addThemeEventListeners();
   shellListener(mainWindow);

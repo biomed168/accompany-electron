@@ -1,2 +1,2 @@
-export const SUFFIX = 'accompany';
+export const SUFFIX = 'electron';
 export const LIBRARY_PATH_SUFFIX = SUFFIX;

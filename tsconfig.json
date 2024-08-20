@@ -20,5 +20,5 @@
     "moduleResolution": "node",
     "resolveJsonModule": true
   },
-  "include": ["src"]
+  "include": ["src", "types/types.d.ts"]
 }

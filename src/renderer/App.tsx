@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import HomePage from './pages/HomePage';
 import BaseLayout from './layouts/BaseLayout';
 import { syncThemeWithLocal } from '@/renderer/helpers/theme_helpers';
+import { AppSettingsProvider } from '@/renderer/context';
 
 export default function App() {
   useEffect(() => {
@@ -10,9 +11,11 @@ export default function App() {
   }, []);
 
   return (
-    <BaseLayout>
-      <HomePage />
-    </BaseLayout>
+    <AppSettingsProvider>
+      <BaseLayout>
+        <HomePage />
+      </BaseLayout>
+    </AppSettingsProvider>
   );
 }
 

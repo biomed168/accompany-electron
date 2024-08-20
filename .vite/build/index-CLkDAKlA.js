@@ -1,13 +1,13 @@
 "use strict";
-const require$$0$1 = require("electron");
+const electron = require("electron");
 const require$$0 = require("fs");
-const require$$1 = require("path");
+const path$5 = require("path");
 const require$$5 = require("assert");
-const require$$2 = require("events");
+const require$$0$1 = require("events");
 const require$$0$4 = require("util");
-const require$$3 = require("https");
+const require$$1 = require("https");
 const require$$0$2 = require("stream");
-const main = require("./main-fQ1bwJhi.js");
+const main = require("./main-CnqeHm2U.js");
 const require$$0$3 = require("buffer");
 function _mergeNamespaces(n, m) {
   for (var i = 0; i < m.length; i++) {
@@ -1625,7 +1625,7 @@ var hasRequiredOld;
 function requireOld() {
   if (hasRequiredOld) return old;
   hasRequiredOld = 1;
-  var pathModule = require$$1;
+  var pathModule = path$5;
   var isWindows2 = process.platform === "win32";
   var fs2 = require$$0;
   var DEBUG = process.env.NODE_DEBUG && /fs/.test(process.env.NODE_DEBUG);
@@ -2754,7 +2754,7 @@ function requireCommon() {
     return Object.prototype.hasOwnProperty.call(obj, field);
   }
   var fs2 = require$$0;
-  var path2 = require$$1;
+  var path2 = path$5;
   var minimatch = requireMinimatch();
   var isAbsolute = requirePathIsAbsolute();
   var Minimatch = minimatch.Minimatch;
@@ -2944,7 +2944,7 @@ function requireSync() {
   var minimatch = requireMinimatch();
   minimatch.Minimatch;
   requireGlob().Glob;
-  var path2 = require$$1;
+  var path2 = path$5;
   var assert2 = require$$5;
   var isAbsolute = requirePathIsAbsolute();
   var common2 = requireCommon();
@@ -3415,8 +3415,8 @@ function requireGlob() {
   var minimatch = requireMinimatch();
   minimatch.Minimatch;
   var inherits2 = requireInherits();
-  var EE = require$$2.EventEmitter;
-  var path2 = require$$1;
+  var EE = require$$0$1.EventEmitter;
+  var path2 = path$5;
   var assert2 = require$$5;
   var isAbsolute = requirePathIsAbsolute();
   var globSync = requireSync();
@@ -3957,7 +3957,7 @@ function requireGlob() {
   return glob_1;
 }
 const assert = require$$5;
-const path$4 = require$$1;
+const path$4 = path$5;
 const fs$4 = require$$0;
 let glob = void 0;
 try {
@@ -4234,10 +4234,10 @@ var utils$r = {};
 (function(exports2) {
   Object.defineProperty(exports2, "__esModule", { value: true });
   exports2.changePermissions = exports2.downloadFile = exports2.getPath = void 0;
-  const electron_12 = require$$0$1;
+  const electron_12 = electron;
   const fs2 = require$$0;
-  const path2 = require$$1;
-  const https = require$$3;
+  const path2 = path$5;
+  const https = require$$1;
   const getPath = () => {
     const savePath = electron_12.app.getPath("userData");
     return path2.resolve(`${savePath}/extensions`);
@@ -5389,7 +5389,7 @@ function require_stream_readable() {
   var isArray = requireIsarray();
   var Duplex;
   Readable.ReadableState = ReadableState;
-  require$$2.EventEmitter;
+  require$$0$1.EventEmitter;
   var EElistenerCount = function(emitter, type) {
     return emitter.listeners(type).length;
   };
@@ -13612,7 +13612,7 @@ JSZip.loadAsync = function(content, options) {
 };
 JSZip.external = external$3;
 var lib = JSZip;
-var path$3 = require$$1;
+var path$3 = path$5;
 var fs$3 = require$$0;
 var _0777 = parseInt("0777", 8);
 var mkdirp$1 = mkdirP.mkdirp = mkdirP.mkdirP = mkdirP;
@@ -14131,7 +14131,7 @@ var promisify$1 = function(fn, self2) {
   };
 };
 var fs$2 = require$$0;
-var path$2 = require$$1;
+var path$2 = path$5;
 var jszip = lib;
 var mkdirp = mkdirp$1;
 var promisify = promisify$1;
@@ -14194,7 +14194,7 @@ function unzip$1(crxFilePath, destination) {
 var dist = unzip$1;
 Object.defineProperty(downloadChromeExtension$1, "__esModule", { value: true });
 const fs$1 = require$$0;
-const path$1 = require$$1;
+const path$1 = path$5;
 const rimraf = rimraf_1;
 const utils_1$1 = utils$r;
 const unzip = dist;
@@ -14237,9 +14237,9 @@ const downloadChromeExtension = (chromeStoreID, forceDownload, attempts = 5) => 
 downloadChromeExtension$1.default = downloadChromeExtension;
 Object.defineProperty(dist$1, "__esModule", { value: true });
 var MOBX_DEVTOOLS = dist$1.MOBX_DEVTOOLS = APOLLO_DEVELOPER_TOOLS = dist$1.APOLLO_DEVELOPER_TOOLS = CYCLEJS_DEVTOOL = dist$1.CYCLEJS_DEVTOOL = REDUX_DEVTOOLS = dist$1.REDUX_DEVTOOLS = VUEJS3_DEVTOOLS = dist$1.VUEJS3_DEVTOOLS = VUEJS_DEVTOOLS = dist$1.VUEJS_DEVTOOLS = ANGULARJS_BATARANG = dist$1.ANGULARJS_BATARANG = JQUERY_DEBUGGER = dist$1.JQUERY_DEBUGGER = BACKBONE_DEBUGGER = dist$1.BACKBONE_DEBUGGER = REACT_DEVELOPER_TOOLS = dist$1.REACT_DEVELOPER_TOOLS = EMBER_INSPECTOR = dist$1.EMBER_INSPECTOR = void 0;
-const electron_1 = require$$0$1;
+const electron_1 = electron;
 const fs = require$$0;
-const path = require$$1;
+const path = path$5;
 const semver = semver$1;
 const downloadChromeExtension_1 = downloadChromeExtension$1;
 const utils_1 = utils$r;

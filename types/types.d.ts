@@ -18,7 +18,15 @@ interface ElectronWindow {
   close: () => Promise<void>;
 }
 
-declare interface Window {
+interface SettingsModeContext {
+  get: () => Promise<boolean>;
+  set: () => Promise<void>;
+  getLibrary: () => Promise<void>;
+  setLibrary: () => Promise<boolean>;
+}
+
+type AppType = {
   themeMode: ThemeModeContext;
   electronWindow: ElectronWindow;
-}
+  settingsMode: SettingsModeContext;
+};
