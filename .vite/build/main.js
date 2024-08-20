@@ -16,8 +16,14 @@ function addThemeEventListeners() {
     }
     return electron.nativeTheme.shouldUseDarkColors;
   });
-  electron.ipcMain.handle(THEME_MODE_DARK_CHANNEL, () => electron.nativeTheme.themeSource = "dark");
-  electron.ipcMain.handle(THEME_MODE_LIGHT_CHANNEL, () => electron.nativeTheme.themeSource = "light");
+  electron.ipcMain.handle(
+    THEME_MODE_DARK_CHANNEL,
+    () => electron.nativeTheme.themeSource = "dark"
+  );
+  electron.ipcMain.handle(
+    THEME_MODE_LIGHT_CHANNEL,
+    () => electron.nativeTheme.themeSource = "light"
+  );
   electron.ipcMain.handle(THEME_MODE_SYSTEM_CHANNEL, () => {
     electron.nativeTheme.themeSource = "system";
     return electron.nativeTheme.shouldUseDarkColors;
