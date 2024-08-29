@@ -14,9 +14,11 @@ export default defineConfig((env) => {
     root,
     mode,
     base: './',
+    publicDir: './src/renderer/public',
     build: {
       outDir: `.vite/renderer/${name}`,
     },
+    assetsInclude: ['**/*.wasm'],
     plugins: [pluginExposeRenderer(name), react()],
     resolve: {
       preserveSymlinks: true,
