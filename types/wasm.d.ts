@@ -1,15 +1,4 @@
 export {};
-declare module '*.wasm?url' {
-  const value: string;
-  export default value;
-}
-
-declare module '*.wasm' {
-  const initWasm: (
-    options?: WebAssembly.Imports,
-  ) => Promise<WebAssembly.Instance>;
-  export default initWasm;
-}
 declare global {
   interface Window {
     commonEventFunc: (listener: (event: string) => void) => void;

@@ -100,10 +100,23 @@ export default function Wasm(props: { className: string }) {
       window.commonEventFunc((event) => {
         console.log('event', event);
       });
-      window.initSDK('id-2', JSON.stringify({ config: 1 }));
-      window.login('id-3', 'user-1', 'token-2').then((res) => {
-        console.log('login', res);
-      });
+      const config = {
+        platformID: 5,
+        dataDir: './',
+        logLevel: 5,
+        isLogStandardOutput: true,
+        logFilePath: './',
+        isExternalExtensions: false,
+      };
+      console.log(window.initSDK('id-2', JSON.stringify(config)));
+      window
+        .login('id-3', 'user-1', 'token-2')
+        .then((res) => {
+          console.log('login', res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     });
   }, []);
   return <div className={props.className}>wasm</div>;
