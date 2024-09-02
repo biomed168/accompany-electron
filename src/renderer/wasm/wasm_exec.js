@@ -26,7 +26,7 @@
         outputBuf += decoder.decode(buf);
         const nl = outputBuf.lastIndexOf('\n');
         if (nl != -1) {
-          console.log(outputBuf.substring(0, nl));
+          console.info(outputBuf.substring(0, nl));
           outputBuf = outputBuf.substring(nl + 1);
         }
         return buf.length;

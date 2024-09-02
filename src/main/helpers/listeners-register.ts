@@ -10,6 +10,7 @@ import {
   originalStdListeners,
 } from '@/main/helpers/ipc/window/window-listeners';
 import { addSettingsEventListeners } from '@/main/helpers/ipc/settings/settings-listeners';
+import { addLogEventListeners } from '@/main/helpers/ipc/log/log-listeners';
 
 export default function registerListeners(mainWindow: BrowserWindow) {
   addSettingsEventListeners();
@@ -21,4 +22,5 @@ export default function registerListeners(mainWindow: BrowserWindow) {
   appListener(mainWindow);
   systemPreferencesListener(mainWindow);
   originalStdListeners(mainWindow);
+  addLogEventListeners();
 }

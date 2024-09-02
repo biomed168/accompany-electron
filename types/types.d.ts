@@ -51,8 +51,13 @@ interface SettingsModeContext {
   setLibrary: () => Promise<boolean>;
 }
 
+interface LogModeContext {
+  info: (message: string) => void;
+}
+
 type AppType = {
   themeMode: ThemeModeContext;
   electronWindow: ElectronWindow;
   settingsMode: SettingsModeContext;
+  logMode: LogModeContext;
 };

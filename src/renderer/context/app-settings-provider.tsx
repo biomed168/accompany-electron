@@ -22,14 +22,14 @@ const defaultElectronWindow: ElectronWindow = {
   hideView: () => Promise.resolve(),
   showView: () => Promise.resolve(),
   scrapeView: () => Promise.resolve(''),
-  getPlatformInfo: () => Promise.resolve({}),
+  getPlatformInfo: () => Promise.resolve(''),
   resetApp: () => Promise.resolve(),
   resetSettings: () => Promise.resolve(),
   relaunchApp: () => Promise.resolve(),
   reloadApp: () => Promise.resolve(),
   isPackaged: () => Promise.resolve(false),
   quitApp: () => Promise.resolve(),
-  getSystemPreferencesMediaAccess: () => Promise.resolve({}),
+  getSystemPreferencesMediaAccess: () => Promise.resolve(''),
 };
 
 const defaultSettingsModeContext: SettingsModeContext = {
@@ -47,11 +47,16 @@ const defaultThemeModeContext: ThemeModeContext = {
   current: () => Promise.resolve('system'), // 默认实现返回 'system'，表示当前主题为系统默认
 };
 
+const defaultLogModeContext: LogModeContext = {
+  info: console.log,
+};
+
 // 创建一个包含默认实现的 AppType
 const defaultAppType: AppType = {
   themeMode: defaultThemeModeContext,
   electronWindow: defaultElectronWindow,
   settingsMode: defaultSettingsModeContext,
+  logMode: defaultLogModeContext,
 };
 
 type AppSettingsProviderState = {
@@ -70,6 +75,7 @@ export const AppSettingsProvider = ({
 }) => {
   let App = window[SUFFIX as keyof typeof window] || {};
 
+  // 使用其中一个类型来判断是否preload注入成功
   if (!App?.electronWindow) {
     (window as any)[SUFFIX as keyof any] = defaultAppType;
     App = defaultAppType;

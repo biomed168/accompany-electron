@@ -2,6 +2,7 @@ import { SUFFIX } from '@/constants';
 import { exposeThemeContext } from '@/main/helpers/ipc/theme/theme-context';
 import { exposeWindowContext } from '@/main/helpers/ipc/window/window-context';
 import { exposeSettingsContext } from '@/main/helpers/ipc/settings/settings-context';
+import { exposeLogContext } from '@/main/helpers/ipc/log/log-context';
 
 export default function exposeContexts() {
   const { contextBridge } = window.require('electron');
@@ -10,5 +11,6 @@ export default function exposeContexts() {
     ...exposeWindowContext(),
     ...exposeThemeContext(),
     ...exposeSettingsContext(),
+    ...exposeLogContext(),
   });
 }
